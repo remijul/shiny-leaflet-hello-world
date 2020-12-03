@@ -29,4 +29,4 @@ COPY Rprofile.site /usr/local/lib/R/etc/
 
 EXPOSE 3838
 
-CMD ["R", "-e", "shiny::runApp('/root/leaflet-hello')"]
+CMD ["R", "-e", "shiny::runApp('/root/leaflet-hello', host='0.0.0.0', port=3838)"]
