@@ -8,7 +8,6 @@
 #
 
 library(shiny)
-library(magrittr)
 library(leaflet)
 
 # Define UI for application that draws a histogram

@@ -10,9 +10,18 @@
 library(shiny)
 library(magrittr)
 library(leaflet)
+library(shinyWidgets)
+
 
 # Define server logic required to draw a histogram
 function(input, output, session) {
+  
+  dcidIcon <- leaflet::icons(iconUrl = "http://www.dcid-consulting.fr/img/logo.png",
+                             iconWidth = 70,iconHeight = 40)
+  
+  dcidPopup <- paste0("<p><span style='font-size:120%; font-weight: bold'>Dcid Consulting</span></p>
+                      <p><hr><br>Consultancy - Training - Expertise - Development<br>Data Science & Machine Learning & Data Analytics</br></p>
+                      <p><a href='http://www.dcid-consulting.fr/' target='_blank'>You are welcome to visit my website !</a></p>")
   
   output$plot <- leaflet::renderLeaflet({
     leaflet::leaflet() %>%
@@ -26,12 +35,13 @@ function(input, output, session) {
         position = "topright",
         options = leaflet::layersControlOptions(collapsed = TRUE)
       ) %>%
-      leaflet::setView(lng = 1.6806699, lat = 47.5004721, zoom = input$slider) %>%
+      leaflet::addMarkers(lng = 1.9251055982239462, lat = 47.84702108657898, icon=dcidIcon,
+                          popup = dcidPopup,
+                          label = "Dcid Data Science Consulting") %>%
+      # leaflet::setView(lng = 1.9251055982239462, lat = 47.84702108657898, zoom = 8) 
+      leaflet::setView(lng = 1.9251055982239462, lat = 47.84702108657898, zoom = input$slider) %>%
       leaflet::addControl(layerId = "mapInfo", shinyWidgets::actionBttn(inputId = "mapBtnInfo", label = "Info", color = "danger", size = "xs", style = "jelly"), position="bottomright") %>%
-      # leaflet::addControl(shinyWidgets::actionBttn(inputId = "mapInfo", label = "", color = "danger", icon = icon("info-circle", class="fa-2x"), size = "xs", style = "material-circle"), position="bottomright") %>%
-      # leaflet::addControl(actionButton(inputId = "mapInfo", label="", icon = icon("info-circle", class="fa-2x"), style="justify-content: center; margin: auto; display:block; text-align: center; height: 35px; width: 35px; color: red; background-color: transparent; border-color: white; border-radius: 50%;"), position="bottomright") %>%
       leaflet::addControl(HTML('<a href="http://www.dcid-consulting.fr/" target="_blank">Source : dcid-consulting.fr</a>'), position = "bottomleft", "map-title")
-    # leaflet::removeControl(layerId = "mapInfo")
   })
   
   
