@@ -24,7 +24,8 @@ RUN R -e "install.packages('leaflet'), repos='https://cloud.r-project.org/')"
 RUN mkdir /root/leaflet-hello
 COPY leaflet-hello /root/leaflet-hello
 
-COPY Rprofile.site /usr/lib/R/etc/
+COPY Rprofile.site /usr/local/lib/R/etc/
+#COPY Rprofile.site /usr/lib/R/etc/
 
 EXPOSE 3838
 
