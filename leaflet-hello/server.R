@@ -16,7 +16,7 @@ library(shinyWidgets)
 # Define server logic required to draw a histogram
 function(input, output, session) {
   
-  dcidIcon <- leaflet::icons(iconUrl = "http://www.dcid-consulting.fr/img/logo.png",
+  dcidIcon <- leaflet::icons(iconUrl = "dcidLogo.png",
                              iconWidth = 70,iconHeight = 40)
   
   dcidPopup <- paste0("<p><span style='font-size:120%; font-weight: bold'>Dcid Consulting</span></p>
