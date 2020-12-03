@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 RUN R -e "install.packages(c('shiny', 'rmarkdown', 'magrittr'), repos='https://cloud.r-project.org/')"
 
 # install dependencies of the app
-RUN R -e "install.packages('leaflet'), repos='https://cloud.r-project.org/')"
+RUN R -e "install.packages('leaflet', repos='https://cloud.r-project.org/')"
 
 # copy the app to the image
 RUN mkdir /root/leaflet-hello
